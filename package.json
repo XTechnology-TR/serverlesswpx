@@ -1,7 +1,7 @@
 {
-  "name": "serverlesswp-wordpress-starter",
+  "name": "serverlesswpx",
   "version": "1.0.0",
-  "description": "",
+  "description": "XTechnology yeni nesil wordpress web geliştirme çözümü",
   "license": "MIT",
   "dependencies": {
     "serverlesswp": "^0.1.2"

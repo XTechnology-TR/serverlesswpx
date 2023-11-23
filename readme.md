@@ -1,67 +1,68 @@
-# Host WordPress On Vercel, Netlify, or AWS
-WordPress hosting is silly. Serverless WordPress on Vercel, Netlify, or AWS Lambda.
+# WordPress'i Vercel, Netlify veya AWS'de Barındırın
+WordPress barındırma aptalca. Vercel, Netlify veya AWS Lambda'da Sunucusuz WordPress.
 
-| Vercel (recommended) | Netlify | AWS with Serverless Framework |
+| Vercel (önerilen) | Netlify | AWS with Serverless Framework|
 | --- | --- | --- |
 | [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmitchmac%2Fserverlesswp&env=DATABASE,USERNAME,PASSWORD,HOST&envDescription=Database%20credentials%20from%20PlanetScale%20or%20other%20host&envLink=https%3A%2F%2Fgithub.com%2Fmitchmac%2FServerlessWP%23setup-vercel-or-netlify&project-name=serverlesswp&repository-name=serverlesswp) |  [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mitchmac/serverlesswp) | ```npm install && serverless deploy```
 
-### Quick install video
+###Hızlı kurulum videosu
 
 [![](https://markdown-videos.vercel.app/youtube/A1HZB2OqpCY)](https://youtu.be/A1HZB2OqpCY)
 
-## Project goals
+## Proje hedefleri
 
-✅ Maintaining servers for WordPress can be a pain. Serverless hosting should be less work.
+✅ WordPress sunucularının bakımını yapmak zahmetli olabilir. Sunucusuz barındırma daha az iş gerektirecektir.
 
-✅ Small WordPress sites shouldn't cost much (or anything) to host. **Vercel, Netlify, AWS, & PlanetScale have free tiers**.
+✅ Küçük WordPress sitelerinin barındırılmasının çok fazla (veya hiçbir şey) maliyeti olmamalıdır. **Vercel, Netlify, AWS ve PlanetScale'in ücretsiz katmanları vardır**.
 
-✅ WordPress plugins and themes save time and should be extensively supported.
+✅ WordPress eklentileri ve temaları zamandan tasarruf sağlar ve kapsamlı bir şekilde desteklenmelidir.
 
-✅ Edge caching can give us blazing fast websites.
+✅ Kenar önbelleğe alma bize son derece hızlı web siteleri sağlayabilir.
 
-✅ We can reduce the carbon footprint of WordPress websites.
+✅ WordPress web sitelerinin karbon ayak izini azaltabiliriz.
+✅ Yardımsever bir topluluk oluşturabiliriz. Tartışmalarda [Başarılarınızı, bilgilerinizi, fikirlerinizi veya mücadelelerinizi paylaşın](https://github.com/mitchmac/ServerlessWP/discussions).
 
-✅ We can create a helpful community. [Share your successes, knowledge, ideas, or struggles](https://github.com/mitchmac/ServerlessWP/discussions) in the discussions.
+## SunucusuzWP'yi Dağıtma
 
-## Deploying ServerlessWP
+**Bu şu anda deneysel bir projedir ve henüz önemli ölçüde güvenlik veya istikrarın gerekli olduğu durumlarda kullanılmamalıdır**
 
-**This is currently an experimental project and shouldn't be used when considerable security or stability is required, yet**
+1. **Vercel veya Netlify'dan erişilebilen bir MySQL veritabanı oluşturun**.
 
-1. **Create a MySQL database** that can be accessed from Vercel or Netlify.
+Bunu yapmanın en kolay yolu, başlangıç ​​için ücretsiz bir katmana sahip olan [PlanetScale](https://planetscale.com/) kullanmaktır. PlanetScale kullanırken veritabanınızın bölgesinin Vercel veya Netlify'ın kullanacağı bölgeyle eşleştiğinden emin olun. Bu genellikle ```us-east-1```dir.
 
-The easiest way to do this is with [PlanetScale](https://planetscale.com/) which has a free tier to get started. When using PlanetScale, make sure your database's region matches the region that Vercel or Netlify will use. This is usually ```us-east-1```.
+2. **Bu depoyu Vercel, Netlify veya AWS'ye dağıtın.**
 
-2. **Deploy this repository to Vercel, Netlify, or AWS.** One of the links above will get you started. You'll just need a GitHub account.
+Yukarıdaki bağlantılardan biri başlamanıza yardımcı olacaktır. Sadece bir GitHub hesabına ihtiyacınız olacak.
 
-If deploying to AWS with the Serverless Framework for the first time, check the [Serverless Framework docs](https://www.serverless.com/framework/docs/getting-started) to get up to speed and run ```serverless deploy``` when ready.
+Sunucusuz Çerçeve ile AWS'ye ilk kez dağıtım yapıyorsanız, hızlanmak ve "sunucusuz" çalıştırmak için [Sunucusuz Çerçeve belgelerini](https://www.serverless.com/framework/docs/getting-started) kontrol edin. hazır olduğunuzda konuşlandırın.
 
-3. **Update the environment variables** for your project in Vercel or Netlify with the database credentials from PlanetScale or wherever you host the MySQL database. The WordPress config file ```wp-config.php``` uses these values to connect to the database. The environment variables are:
+3. Vercel veya Netlify'daki projeniz için **ortam değişkenlerini PlanetScale'den veya MySQL veritabanını barındırdığınız her yerden veritabanı kimlik bilgileriyle güncelleyin. WordPress yapılandırma dosyası ```wp-config.php``` veritabanına bağlanmak için bu değerleri kullanır. Ortam değişkenleri şunlardır:
 - DATABASE
 - USERNAME
 - PASSWORD
 - HOST
 
-For more information about creating environment variables, see [here for Vercel](https://vercel.com/docs/concepts/projects/environment-variables) and [here for Netlify](https://docs.netlify.com/environment-variables/overview/). Remember to redeploy your project after updating the environment variables if you update them after initially deploying your project.
+Ortam değişkenleri oluşturma hakkında daha fazla bilgi için [Vercel için burada](https://vercel.com/docs/concepts/projects/environment-variables) ve [Netlify için burada](https://docs.netlify.com/) bölümlerine bakın. ortam değişkenleri/genel bakış/). Projenizi ilk kez dağıttıktan sonra güncellerseniz, ortam değişkenlerini güncelledikten sonra projenizi yeniden dağıtmayı unutmayın.
 
-4. (optional, can be done later) File and media uploads can be enabled using the included WP Offload Media Lite for Amazon S3 plugin. S3 setup details can be found [here](https://deliciousbrains.com/wp-offload-media/doc/amazon-s3-quick-start-guide/). The wp-config.php file is setup to use the following environment variables for use by the plugin:
-- S3_KEY_ID
-- S3_ACCESS_KEY
+4. (isteğe bağlı, daha sonra yapılabilir) Dosya ve medya yüklemeleri, Amazon S3 için birlikte verilen WP Offload Media Lite eklentisi kullanılarak etkinleştirilebilir. S3 kurulum ayrıntılarına [burada](https://deliciousbrains.com/wp-offload-media/doc/amazon-s3-quick-start-guide/) ulaşabilirsiniz. wp-config.php dosyası, eklenti tarafından kullanılmak üzere aşağıdaki ortam değişkenlerini kullanacak şekilde ayarlanmıştır:
+-S3_KEY_ID
+-S3_ACCESS_KEY
 
-## Customizing WordPress
-- WordPress and its files are in the ```/wp``` directory. You can add plugins or themes there in their respective directories in ```wp-content```
-- Plugins like [Cache-Control](https://wordpress.org/plugins/cache-control/) can enable CDN caching with the s-maxage directive and make your site super fast. Refer to [Vercel Edge Caching](https://vercel.com/docs/concepts/edge-network/caching) or [Netlfiy Cache Headers](https://docs.netlify.com/edge-functions/optional-configuration/#supported-headers)
+## WordPress'i özelleştirme
+- WordPress ve dosyaları ```/wp``` dizinindedir. Eklentileri veya temaları ```wp-content``` içindeki ilgili dizinlerine ekleyebilirsiniz.
+-[Cache-Control](https://wordpress.org/plugins/cache-control/) gibi eklentiler, s-maxage direktifiyle CDN önbelleğe almayı etkinleştirebilir ve sitenizi süper hızlı hale getirebilir. [Vercel Edge Caching ](https://vercel.com/docs/concepts/edge-network/caching) veya [ Netlfiy Cache Headers](https://docs.netlify.com/edge-functions/Optional-configuration) bölümüne bakın. /#desteklenen-başlıklar)
 
-## Project structure
-- `netlify.toml` or `vercel.json` are where we configure ```/api/index.js``` to handle all requests
-- [mitchmac/serverlesswp-node](https://github.com/mitchmac/serverlesswp-node) is used to run PHP and handle the request
-- You can modify the incoming request through the ```event``` object in api/index.js. You can also modify the WordPress ```response``` object there.
+## Proje yapısı
+-``netlify.toml` veya `vercel.json`, tüm istekleri işlemek için ```/api/index.js````yi yapılandırdığımız yerdir
+- [mitchmac/serverlesswp-node](https://github.com/mitchmac/serverlesswp-node) is used PHP'yi çalıştırmak ve isteği işlemek için
+-Gelen isteği api/index.js'deki ```event``` nesnesi aracılığıyla değiştirebilirsiniz. Ayrıca burada WordPress ```response``` nesnesini de değiştirebilirsiniz.
 
-## Getting help
-Need help getting ServerlessWP installed? [Start a discussion](https://github.com/mitchmac/ServerlessWP/discussions) or [e-mail Mitch](mailto:wp@mitchmac.dev)
+## Yardım almak
+ServerlessWP'yi kurma konusunda yardıma mı ihtiyacınız var? [Bir tartışma başlatın](https://github.com/mitchmac/ServerlessWP/discussions) veya [Mitch'e e-posta gönderin](mailto:wp@mitchmac.dev)
 
-## How can you help?
-- Just using ServerlessWP and [reporting any problems you experience](https://github.com/mitchmac/ServerlessWP/issues) is a fantastic way to help!
-- Spread the word! Let's try to make WordPress hosting better.
+## Nasıl yardımcı olabilirsin?
+-Sadece ServerlessWP'yi kullanmak ve [yaşadığınız sorunları bildirmek](https://github.com/mitchmac/ServerlessWP/issues) yardım etmenin harika bir yoludur!
+-Haberi yayın! WordPress barındırma işlemini daha iyi hale getirmeye çalışalım.
 
-## License
+## Lisans
 GNU General Public License v3.0

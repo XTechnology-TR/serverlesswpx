@@ -56,14 +56,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         'put your unique phrase here' );
-define( 'SECURE_AUTH_KEY',  'put your unique phrase here' );
-define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
-define( 'NONCE_KEY',        'put your unique phrase here' );
-define( 'AUTH_SALT',        'put your unique phrase here' );
-define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
-define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
-define( 'NONCE_SALT',       'put your unique phrase here' );
+define('AUTH_KEY',         '_8U/pXMkLThX}IU-|KT_@<Tn|H&,fOS*h|SYl]qPZ,QU&,j>B_[Y+,c> b[AA;jh');
+define('SECURE_AUTH_KEY',  '?8(6/+HI+dn`>C?$zW&=~TzG+P%h%m/R2pPzuSf4,d:CjG9<R4#,B7`x/RK<rcSL');
+define('LOGGED_IN_KEY',    '_hGV%R$%Oxu^=-4D]t4C%yv*|BhC7t@ylS}6puOyyA}80r?89uOcv]0azxX/21+>');
+define('NONCE_KEY',        '!!Rf6/>!-GkY;[J2R&t,/]l0,^E%9C7V,oa@/^F?Cj^yn![=fVs:RX;K7-FZiL$p');
+define('AUTH_SALT',        'O 9JSW1}}E;;9BE{J-|]+UzhxU{-nLp.TMr93AQbmV|8-hZ#kZdWKfl`u}YEa~5D');
+define('SECURE_AUTH_SALT', 'J+5{]uV{RkAN/&~XE?aBV|waG6_f<8f/yh$FKo@nvM0tr>;R*{(-C!rA|F^2uk1B');
+define('LOGGED_IN_SALT',   '+;qPk}a&ix8}[aVtiKKk,?L3N db7}A&}Nn.iQRo:y?&/lvs8 ,&yvNS~F:AQZ;2');
+define('NONCE_SALT',       'pe`u!!yN@fCphtB9dxA6pk^+>Ti@*<ZnPW3j9u|ynGk%0[w[D8[R:?=kpl/I7usR');
 
 /**#@-*/
 
@@ -103,7 +103,7 @@ if (isset($_ENV['S3_KEY_ID']) && isset($_ENV['S3_ACCESS_KEY'])) {
 ) ) );
 }
 
-// Disable file modification because the changes won't be persisted.
+// Değişiklikler kalıcı olmayacağından dosya değişikliğini devre dışı bırakın.
 define('DISALLOW_FILE_EDIT', true );
 define('DISALLOW_FILE_MODS', true );
 
