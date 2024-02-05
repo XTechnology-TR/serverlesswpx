@@ -6,7 +6,7 @@
   to = "/.netlify/functions/index/:splat"
   status = 200
 [template.environment]
-  DATABASE = "MySQL database name here"
-  USERNAME = "MySQL database username here"
-  PASSWORD = "MySQL database password here"
-  HOST = "MySQL database host here"
+  DATABASE = "serverlesswpx"
+  USERNAME = "ybh19tbedj591xv36sfk"
+  PASSWORD = "pscale_pw_5oX8f7OWn2mCLDNnLGcZTC8SQr58ugQMaXJobhaeYl3"
+  HOST = "aws.connect.psdb.cloud"
