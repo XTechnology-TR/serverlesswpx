@@ -3,6 +3,19 @@ const serverlesswp = require("serverlesswp");
 const { validate } = require("../util/install.js");
 const { setup } = require("../util/directory.js");
 
+export const config = {
+  runtime: "nodejs", // this is a pre-requisite
+};
+
+export default function handler(request, response) {
+  response.status(200).json({
+    text: "I am a Serverless Function!",
+    body: request.body,
+    query: request.query,
+    cookies: request.cookies,
+  });
+}
+
 //WordPress'e yapılan tüm isteklerin yönlendirildiği yer burasıdır. Yönlendirme kuralları için vercel.json veya netlify.toml'a bakın.
 exports.handler = async function (event, context, callback) {
   //Yazılabilir olması için /wp dizinini /tmp/wp dizinine taşıyın.
