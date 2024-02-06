@@ -3,9 +3,6 @@ const serverlesswp = require("serverlesswp");
 const { validate } = require("../util/install.js");
 const { setup } = require("../util/directory.js");
 
-export const config = {
-  runtime: "nodejs", // this is a pre-requisite
-};
 
 export default function handler(request, response) {
   response.status(200).json({
