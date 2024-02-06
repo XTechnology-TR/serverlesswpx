@@ -87,21 +87,12 @@ $table_prefix = isset($_ENV['TABLE_PREFIX']) ? $_ENV['TABLE_PREFIX'] : 'wp_';
  *
  * @link https://wordpress.org/documentation/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
 define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL );
 $_SERVER['HTTPS'] = 'on';
-
-// Optional S3 credentials for file storage.
-if (isset($_ENV['S3_KEY_ID']) && isset($_ENV['S3_ACCESS_KEY'])) {
-	define( 'AS3CF_SETTINGS', serialize( array(
-        'provider' => 'aws',
-        'access-key-id' => $_ENV['S3_KEY_ID'],
-        'secret-access-key' => $_ENV['S3_ACCESS_KEY'],
-) ) );
-}
 
 // Değişiklikler kalıcı olmayacağından dosya değişikliğini devre dışı bırakın.
 define('DISALLOW_FILE_EDIT', true );
