@@ -1,32 +1,23 @@
-const serverlesswp = require("serverlesswp");
+const serverlesswp = require('serverlesswp');
 
-const { validate } = require("../util/install.js");
-const { setup } = require("../util/directory.js");
+const { validate } = require('../util/install.js');
+const { setup } = require('../util/directory.js');
 
-
-export default function handler(request, response) {
-  response.status(200).json({
-    text: "I am a Serverless Function!",
-    body: request.body,
-    query: request.query,
-    cookies: request.cookies,
-  });
-}
-
-//WordPress'e yapılan tüm isteklerin yönlendirildiği yer burasıdır. Yönlendirme kuralları için vercel.json veya netlify.toml'a bakın.
+// This is where all requests to WordPress are routed through. See vercel.json or netlify.toml for the redirection rules.
 exports.handler = async function (event, context, callback) {
-  //Yazılabilir olması için /wp dizinini /tmp/wp dizinine taşıyın.
-  setup();
+    // Move the /wp directory to /tmp/wp so that it is writeable.
+    setup();
 
-  //İsteği (olay nesnesini) sunucusuz wp kitaplığına gönder. WordPress'in isteği işlemesine izin veren PHP sunucusunu içerir.
-  let response = await serverlesswp({ docRoot: "/tmp/wp", event: event });
-  // Veritabanı ortamı değişkenlerinin yerinde olup olmadığını kontrol edin.
-  let checkInstall = validate(response);
-
-  if (checkInstall) {
-    return checkInstall;
-  } else {
-    // Sunum için yanıtı döndürün.
-    return response;
-  }
-};
+    // Send the request (event object) to the serverlesswp library. It includes the PHP server that allows WordPress to handle the request.
+    let response = await serverlesswp({docRoot: '/tmp/wp', event: event});
+    // Check to see if the database environment variables are in place.
+    let checkInstall = validate(response);
+    
+    if (checkInstall) {
+        return checkInstall;
+    }
+    else {
+        // Return the response for serving.
+        return response;
+    }
+}
